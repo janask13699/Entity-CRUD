@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TwilightUsers.Models.userdetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <button type="button" onclick="location.href='@Url.Action("Create")'" class="btn btn-success">Create New</button>
+
+</p>
+<table class="table table-responsive-md table-bordered table-striped table-success">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.education)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.education)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            <!-- Edit Button -->
+            @Html.ActionLink("Edit", "Edit", "userdetails", new { id = item.userid }, new { @class = "btn btn-primary mr-6" })
+
+            <!-- Details Button -->
+            @Html.ActionLink("Details", "Details", "userdetails", new { id = item.userid }, new { @class = "btn btn-info mr-6" })
+
+            <!-- Delete Button -->
+            @Html.ActionLink("Delete", "Delete", "userdetails", new { id = item.userid }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this item?');" })
+        </td>
+
+    </tr>
+}
+
+</table>
